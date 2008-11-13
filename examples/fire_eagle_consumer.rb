@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'rubygems'
 require 'fire_hydrant'
 require 'yaml'
 
