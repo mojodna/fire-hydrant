@@ -1,3 +1,7 @@
 jid: client@xmpp-server
 password: password
 pubsub.server: fireeagle.com
+
+# for authorization
+oauth.consumer_key: asdf
+oauth.consumer_secret: qwerty

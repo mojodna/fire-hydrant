@@ -1,22 +1,86 @@
-## Fire Hydrant
+# Fire Hydrant
 
-This includes a sample consumer for Fire Eagle's preliminary XMPP pubsub node.
-It does *not* appear to work with Google Talk accounts, but Jabber.org
-accounts seem fine.
+Fire Hydrant is a set of tools for consuming [Fire
+Eagle](http://fireeagle.yahoo.net/ "Fire Eagle")'s XMPP
+[PubSub](http://xmpp.org/extensions/xep-0060.html "XEP-0060:
+Publish-Subscribe") feed.
 
-This requires switchboard (github.com/mojodna.net/switchboard) to be installed somewhere in your RUBYLIB.  Both should be gems, but I haven't built the gemspecs for them yet.
+## Getting Started
 
-For Fire Eagle subscriptions to work properly, you'll have to obtain a valid
-OAuth access token and put it in `fire_hydrant.yml` (use `authorize.rb` for this).
+Install it:
 
-You'll also need a General Purpose access token (issued to apps that register
-using 'web' auth) in order to list subscriptions. Before running the consumer,
-you should add 'fireeagle.com' to your roster.
+    $ sudo gem install mojodna-fire_hydrant-s http://gems.github.com
 
-There's also the chance that our pubsub node has gone offline, which won't
-help you with debugging ;-) I did mention that all of this is pre-alpha
-preliminary, etc?
+Configure it:
 
-Please please please let me know how this works for you.
+    $ cp fire_hydrant.yml.sample fire_hydrant.yml
+    $ vi fire_hydrant.yml
 
-email/im: seth@mojodna.net
+_Switchboard settings are not presently used._
+
+Configure switchboard:
+
+    $ switchboard config jid jid@example.com
+    $ switchboard config password pa55word
+    $ switchboard config oauth.consumer_key asdf
+    $ switchboard config oauth.consumer_secret qwerty
+    $ switchboard config oauth.token asdf
+    $ switchboard config oauth.token_secret qwerty
+    $ switchboard config oauth.general_token asdf
+    $ switchboard config oauth.general_token_secret qwerty
+    $ switchboard config pubsub.server fireeagle.com
+
+Subscribe to location updates corresponding to the configured token:
+
+    $ switchboard pubsub subscribe
+
+Check subscriptions:
+
+    $ switchboard pubsub subscriptions
+
+Run it:
+
+    $ examples/fire_eagle_consumer.rb
+
+If you'd like to unsubscribe:
+
+    $ switchboard pubsub unsubscribe
+
+## Notes and Gotchas
+
+Subscribing to / unsubscribing from nodes is an awkward process at the moment,
+as switchboard must be re-configured with each OAuth token/secret pair that
+you wish to subscribe to.
+
+If you need to authorize your application to receive updates, you can add your
+OAuth consumer key to _fire\_hydrant.yml_ and run:
+
+    $ examples/authorize.rb
+
+You can then add the token and secret to your switchboard configuration in
+order to subscribe.
+
+Google Talk accounts do not appear to work, but Jabber.org accounts seem to
+work fine. (If you plan to use this in production, you should be running your
+own XMPP server and should **not** use Jabber.org.)
+
+## Getting Help
+
+Your best bet for help is to post a message to the Fire Eagle Yahoo! Group:
+[http://tech.groups.yahoo.com/group/fireeagle/](http://tech.groups.yahoo.com/group/fireeagle/
+"Fire Eagle Yahoo! Group")
+
+## Google Earth Integration
+
+If you're on a Mac, install [Google Earth](http://earth.google.com/ "Google
+Earth") and
+[rb-appscript](http://appscript.sourceforge.net/rb-appscript/index.html "Ruby
+Appscript"):
+
+    $ sudo gem install rb-appscript
+
+Start Google Earth and run:
+
+    $ examples/fire_eagle_visualizer.rb
+
+To see your users' locations in real-time as they change.

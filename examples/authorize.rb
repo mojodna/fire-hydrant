@@ -9,15 +9,15 @@ require 'fireeagle'
 # read the configuration
 config = YAML.load(open("fire_hydrant.yml").read)
 
-if config.has_key?("oauth_token") && config.has_key?("oauth_token_secret")
+if config.has_key?("oauth.token") && config.has_key?("oauth.token_secret")
   puts "Application has already been authorized."
   exit
 end
 
 # initialize a Fire Eagle client
 client = FireEagle::Client.new \
-  :consumer_key => config["oauth_consumer_key"],
-  :consumer_secret => config["oauth_consumer_secret"]
+  :consumer_key    => config["oauth.consumer_key"],
+  :consumer_secret => config["oauth.consumer_secret"]
 
 ## Step 1 - Get a request token
 
