@@ -2,8 +2,7 @@
 
 Fire Hydrant is a set of tools for consuming [Fire
 Eagle](http://fireeagle.yahoo.net/ "Fire Eagle")'s XMPP
-[PubSub](http://xmpp.org/extensions/xep-0060.html "XEP-0060:
-Publish-Subscribe") feed.
+[PubSub](http://xmpp.org/extensions/xep-0060.html "XEP-0060: Publish-Subscribe") feed.
 
 ## Getting Started
 
@@ -72,10 +71,8 @@ Your best bet for help is to post a message to the Fire Eagle Yahoo! Group:
 
 ## Google Earth Integration
 
-If you're on a Mac, install [Google Earth](http://earth.google.com/ "Google
-Earth") and
-[rb-appscript](http://appscript.sourceforge.net/rb-appscript/index.html "Ruby
-Appscript"):
+If you're on a Mac, install [Google Earth](http://earth.google.com/ "Google Earth") and
+[rb-appscript](http://appscript.sourceforge.net/rb-appscript/index.html "Ruby Appscript"):
 
     $ sudo gem install rb-appscript
 
