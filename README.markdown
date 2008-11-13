@@ -8,7 +8,7 @@ Eagle](http://fireeagle.yahoo.net/ "Fire Eagle")'s XMPP
 
 Install it:
 
-    $ sudo gem install mojodna-fire_hydrant-s http://gems.github.com
+    $ sudo gem install mojodna-fire-hydrant-s http://gems.github.com
 
 Configure it:
 
