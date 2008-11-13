@@ -66,8 +66,7 @@ own XMPP server and should **not** use Jabber.org.)
 ## Getting Help
 
 Your best bet for help is to post a message to the Fire Eagle Yahoo! Group:
-[http://tech.groups.yahoo.com/group/fireeagle/](http://tech.groups.yahoo.com/group/fireeagle/
-"Fire Eagle Yahoo! Group")
+[http://tech.groups.yahoo.com/group/fireeagle/](http://tech.groups.yahoo.com/group/fireeagle/ "Fire Eagle Yahoo! Group")
 
 ## Google Earth Integration
 
