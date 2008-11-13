@@ -1,31 +1,29 @@
 #!/usr/bin/env ruby
+require 'rubygems'
+begin
+  require 'appscript'
+rescue LoadError => e
+  gem = e.message.split("--").last.strip
+  puts "The #{gem} gem is required."
+end
+
 require 'fire_hydrant'
-require 'fireeagle'
-require 'appscript'
 
 earth = Appscript.app("Google Earth")
 
-hydrant = FireHydrant.new(YAML.load(File.read("fire_hydrant.yml")).merge("jid" => "fire_hydrant@jabber.org/visualizer"), true)
-hydrant.jack!(AutoAcceptJack, NotifyJack, OAuthPubSubJack)
+# override the resource as "visualizer"
+hydrant = FireHydrant.new(YAML.load(File.read("fire_hydrant.yml")).merge("resource" => "visualizer"), true)
 
-hydrant.on_pubsub_event do |event|
-  event.payload.each do |payload|
-    puts "Node: #{payload.node}"
-    payload.elements.each do |item|
-      rsp = item.first_element("rsp")
-      response = FireEagle::Response.new(rsp.to_s)
-      user = response.users[0]
-      # for some reason the Fire Eagle gem doesn't let me do this
-      begin
-        name = user.locations[0].instance_eval { @doc.at("//name").innerText }
-        geom = user.locations[0].geom
-        puts "#{user.token} has moved to #{name}."
-        pt = geom.is_a?(GeoRuby::SimpleFeatures::Envelope) ? geom.center : geom
-        earth.SetViewInfo({:latitude => pt.y, :longitude => pt.x, :distance => (rand * 25000) + 5000, :azimuth => rand * 360, :tilt => (rand * 75)}, {:speed => 1})
-      rescue
-      end
-    end
+hydrant.on_location_update do |user|
+  # for some reason the Fire Eagle gem doesn't work when I access #name directly
+  name = user.locations[0].instance_eval { @doc.at("//name").innerText }
+  puts "#{user.token} has moved to #{name}."
+
+  geom = user.locations[0].geom
+  begin
+    pt = geom.is_a?(GeoRuby::SimpleFeatures::Envelope) ? geom.center : geom
+    earth.SetViewInfo({:latitude => pt.y, :longitude => pt.x, :distance => (rand * 25000) + 5000, :azimuth => rand * 360, :tilt => (rand * 75)}, {:speed => 1})
+  rescue # rescue from Appscript errrors
   end
-end
 
 hydrant.run!
