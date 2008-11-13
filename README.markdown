@@ -8,7 +8,11 @@ Eagle](http://fireeagle.yahoo.net/ "Fire Eagle")'s XMPP
 
 Install it:
 
-    $ sudo gem install mojodna-fire-hydrant-s http://gems.github.com
+    $ sudo gem install mojodna-fire-hydrant -s http://gems.github.com
+
+Clone it (to play with):
+
+    $ git clone git://github.com/mojodna/fire-hydrant.git
 
 Configure it:
 
@@ -44,6 +48,36 @@ Run it:
 If you'd like to unsubscribe:
 
     $ switchboard pubsub unsubscribe
+
+## Incorporating the Fire Hydrant Into Your Application
+
+The most basic Fire Eagle consumer looks like:
+
+    config = YAML.load(File.read("fire_hydrant.yml"))
+    hydrant = FireHydrant.new(config)
+
+    hydrant.on_location_update do |user|
+      # insert application-specific functionality here
+      puts "#{user.token} has moved to #{user.locations[0].name}."
+    end
+
+    hydrant.run!
+
+_examples/fire\_eagle\_consumer.rb_
+
+The configuration Hash (`config`) must contain `jid`, `password`, and
+`pubsub.server`, but does not need to be loaded from `fire_hydrant.yml`.
+
+Your consumer should run as a stand-alone application, as it spawns several
+threads and is intended to be a long-running process.
+
+Also, note that running multiple instances of the consumer (each with
+different resources, in order for all to be online simultaneously) will not
+distribute updates across instances; **all instances will receive all
+updates**.
+
+See the [Fire Eagle gem documentation](http://fireeagle.rubyforge.org/) for
+more information on how Fire Eagle information is exposed to Ruby.
 
 ## Notes and Gotchas
 
