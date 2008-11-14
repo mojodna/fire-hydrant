@@ -21,18 +21,6 @@ Configure it:
 
 _Switchboard settings are not presently used._
 
-Configure switchboard:
-
-    $ switchboard config jid jid@example.com
-    $ switchboard config password pa55word
-    $ switchboard config oauth.consumer_key asdf
-    $ switchboard config oauth.consumer_secret qwerty
-    $ switchboard config oauth.token asdf
-    $ switchboard config oauth.token_secret qwerty
-    $ switchboard config oauth.general_token asdf
-    $ switchboard config oauth.general_token_secret qwerty
-    $ switchboard config pubsub.server fireeagle.com
-
 Add **fireeagle.com** to your roster:
 
     $ switchboard roster add fireeagle.com
@@ -44,11 +32,26 @@ notifications to be sent properly):
 
 Subscribe to location updates corresponding to the configured token:
 
-    $ switchboard pubsub subscribe
+    $ switchboard --jid jid@example.com --password pa55word \
+    pubsub --oauth \
+    --oauth-consumer-key <consumer key> \
+    --oauth-consumer-secret <consumer secret> \
+    --oauth-token <token> \
+    --oauth-token-secret <token secret> \
+    --server fireeagle.com \
+    --node "/api/0.1/user/<token>" \
+    subscribe
 
 Check subscriptions:
 
-    $ switchboard pubsub subscriptions
+    $ switchboard --jid jid@example.com --password pa55word \
+    pubsub --oauth \
+    --oauth-consumer-key <consumer key> \
+    --oauth-consumer-secret <consumer secret> \
+    --oauth-token <general token> \
+    --oauth-token-secret <general token secret> \
+    --server fireeagle.com \
+    subscriptions
 
 Run it:
 
@@ -56,7 +59,16 @@ Run it:
 
 If you'd like to unsubscribe:
 
-    $ switchboard pubsub unsubscribe
+
+    $ switchboard --jid jid@example.com --password pa55word \
+    pubsub --oauth \
+    --oauth-consumer-key <consumer key> \
+    --oauth-consumer-secret <consumer secret> \
+    --oauth-token <token> \
+    --oauth-token-secret <token secret> \
+    --server fireeagle.com \
+    --node "/api/0.1/user/<token>" \
+    unsubscribe
 
 ## Incorporating the Fire Hydrant Into Your Application
 
