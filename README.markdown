@@ -33,25 +33,25 @@ notifications to be sent properly):
 Subscribe to location updates corresponding to the configured token:
 
     $ switchboard --jid jid@example.com --password pa55word \
-    pubsub --oauth \
-    --oauth-consumer-key <consumer key> \
-    --oauth-consumer-secret <consumer secret> \
-    --oauth-token <token> \
-    --oauth-token-secret <token secret> \
-    --server fireeagle.com \
-    --node "/api/0.1/user/<token>" \
-    subscribe
+        pubsub --oauth \
+        --oauth-consumer-key <consumer key> \
+        --oauth-consumer-secret <consumer secret> \
+        --oauth-token <token> \
+        --oauth-token-secret <token secret> \
+        --server fireeagle.com \
+        --node "/api/0.1/user/<token>" \
+        subscribe
 
 Check subscriptions:
 
     $ switchboard --jid jid@example.com --password pa55word \
-    pubsub --oauth \
-    --oauth-consumer-key <consumer key> \
-    --oauth-consumer-secret <consumer secret> \
-    --oauth-token <general token> \
-    --oauth-token-secret <general token secret> \
-    --server fireeagle.com \
-    subscriptions
+        pubsub --oauth \
+        --oauth-consumer-key <consumer key> \
+        --oauth-consumer-secret <consumer secret> \
+        --oauth-token <general token> \
+        --oauth-token-secret <general token secret> \
+        --server fireeagle.com \
+        subscriptions
 
 Run it:
 
@@ -61,14 +61,14 @@ If you'd like to unsubscribe:
 
 
     $ switchboard --jid jid@example.com --password pa55word \
-    pubsub --oauth \
-    --oauth-consumer-key <consumer key> \
-    --oauth-consumer-secret <consumer secret> \
-    --oauth-token <token> \
-    --oauth-token-secret <token secret> \
-    --server fireeagle.com \
-    --node "/api/0.1/user/<token>" \
-    unsubscribe
+        pubsub --oauth \
+        --oauth-consumer-key <consumer key> \
+        --oauth-consumer-secret <consumer secret> \
+        --oauth-token <token> \
+        --oauth-token-secret <token secret> \
+        --server fireeagle.com \
+        --node "/api/0.1/user/<token>" \
+        unsubscribe
 
 ## Incorporating the Fire Hydrant Into Your Application
 
