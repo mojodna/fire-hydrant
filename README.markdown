@@ -33,6 +33,15 @@ Configure switchboard:
     $ switchboard config oauth.general_token_secret qwerty
     $ switchboard config pubsub.server fireeagle.com
 
+Add **fireeagle.com** to your roster:
+
+    $ switchboard roster add fireeagle.com
+
+Confirm that your roster contains **fireeagle.com** (in order for presence
+notifications to be sent properly):
+
+    $ switchboard roster list
+
 Subscribe to location updates corresponding to the configured token:
 
     $ switchboard pubsub subscribe
