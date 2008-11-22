@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "fire-hydrant"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.summary = "Fire Eagle XMPP PubSub tools"
   s.description = "Tools for consuming Fire Eagle's XMPP PubSub feed."
   s.authors = ["Seth Fitzsimmons"]
