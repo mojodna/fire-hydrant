@@ -7,7 +7,7 @@ rescue LoadError => e
   puts "The #{gem} gem is required."
 end
 
-class FireHydrant < Switchboard::Core
+class FireHydrant < Switchboard::Client
   DEFAULTS = {
     "resource" => "fire_hydrant"
   }
