@@ -1,6 +1,7 @@
 class FireEagleJack
   def self.connect(switchboard, settings)
     switchboard.plug!(AutoAcceptJack, NotifyJack, PubSubJack)
+    switchboard.hook(:location_update)
 
     switchboard.on_pubsub_event do |event|
       event.payload.each do |payload|
@@ -11,10 +12,6 @@ class FireEagleJack
           on(:location_update, user)
         end
       end
-    end
-
-    def switchboard.on_location_update(&block)
-      register_hook(:location_update, &block)
     end
   end
 end
