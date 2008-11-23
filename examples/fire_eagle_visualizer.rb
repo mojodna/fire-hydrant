@@ -12,7 +12,7 @@ require 'fire_hydrant'
 earth = Appscript.app("Google Earth")
 
 # override the resource as "visualizer"
-hydrant = FireHydrant.new(YAML.load(File.read("fire_hydrant.yml")).merge("resource" => "visualizer"), true)
+hydrant = FireHydrant.new(YAML.load(File.read("fire_hydrant.yml")).merge("resource" => "visualizer"))
 
 hydrant.on_location_update do |user|
   # for some reason the Fire Eagle gem doesn't work when I access #name directly
@@ -25,5 +25,6 @@ hydrant.on_location_update do |user|
     earth.SetViewInfo({:latitude => pt.y, :longitude => pt.x, :distance => (rand * 25000) + 5000, :azimuth => rand * 360, :tilt => (rand * 75)}, {:speed => 1})
   rescue # rescue from Appscript errrors
   end
+end
 
 hydrant.run!
