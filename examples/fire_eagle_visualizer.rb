@@ -23,7 +23,7 @@ hydrant.on_location_update do |user|
   begin
     pt = geom.is_a?(GeoRuby::SimpleFeatures::Envelope) ? geom.center : geom
     earth.SetViewInfo({:latitude => pt.y, :longitude => pt.x, :distance => (rand * 25000) + 5000, :azimuth => rand * 360, :tilt => (rand * 75)}, {:speed => 1})
-  rescue # rescue from Appscript errrors
+  rescue # rescue from Appscript errors
   end
 end
 
