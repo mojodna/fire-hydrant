@@ -1,10 +1,9 @@
-require 'rubygems'
 begin
   require 'fireeagle'
   require 'switchboard'
 rescue LoadError => e
-  gem = e.message.split("--").last.strip
-  puts "The #{gem} gem is required."
+  lib = e.message.split("--").last.strip
+  puts "#{lib} is required."
 end
 
 class FireHydrant < Switchboard::Client

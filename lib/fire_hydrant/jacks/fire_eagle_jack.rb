@@ -7,7 +7,7 @@ class FireEagleJack
       event.payload.each do |payload|
         payload.elements.each do |item|
           rsp = item.first_element("rsp")
-          response = FireEagle::Response.new(rsp.to_s)
+          response = FireEagle::Response.parse(rsp.to_s)
           user = response.users[0]
           on(:location_update, user)
         end
